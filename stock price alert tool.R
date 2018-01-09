@@ -43,7 +43,8 @@ price_alert_fn <- function(x = ticker, y = alert.if.price.less.than, z = alert.i
 }
 
 
-## This is where you call your function and insert your stock ticker and your upper and lower limits 
+# This is where you call your function and insert your stock ticker and your upper and lower limits 
+# I use Windows Task Scheduler to run this program every night, so I get an email after the close for that day 
 ## STOCK = LIT ##
 price_alert_fn(x = 'LIT', y = 33.8, z = 44.4)  #Here, I want to know when LIT (Lithium ETF) either falls below $33.8 (close price) or above $44.40 (close price)
 
