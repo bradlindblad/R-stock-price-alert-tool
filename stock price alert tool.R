@@ -1,11 +1,12 @@
 # R-stock-price-alert-tool
-R script that alerts you via email when a certain stock leaves a price channel
-
+# R script that alerts you via email when a certain stock leaves a price channel
+# Call your libraries
+# Email bradley.lindblad@gmail.com with suggestions, comments
 library(quantmod)
 library(mailR)
 
 # Build fn to alert when a stock goes above or below a certain price
-# price_alert_fn
+# Function is called "price_alert_fn"
 price_alert_fn <- function(x = ticker, y = alert.if.price.less.than, z = alert.if.price.greater.than){
   stock <- x
   less_than_target <- y
@@ -15,6 +16,9 @@ price_alert_fn <- function(x = ticker, y = alert.if.price.less.than, z = alert.i
   last_close <- tail(stock2, n = 1)
   last_close <- as.numeric(last_close[,4])
   last_close
+  
+  # This aspect of the function sends you an email with the mailR package if the last close satisfies one of your criteria
+  # This example uses Gmail, but other services will work. Replace "youremail@gmail" with your email, obvi
   if((last_close - less_than_target)<0){
     send.mail(from = "youremail@gmail.com",
               to = c("youremail@gmail.com","recipient 3 <youremail@gmail.com>"),
@@ -41,7 +45,7 @@ price_alert_fn <- function(x = ticker, y = alert.if.price.less.than, z = alert.i
 
 ## This is where you call your function and insert your stock ticker and your upper and lower limits 
 ## STOCK = LIT ##
-price_alert_fn(x = 'LIT', y = 33.8, z = 44.4)
+price_alert_fn(x = 'LIT', y = 33.8, z = 44.4)  #Here, I want to know when LIT (Lithium ETF) either falls below $33.8 (close price) or above $44.40 (close price)
 
 ## STOCK = IEP ##
 price_alert_fn(x = 'IEP', y = 46.8, z = 62.4)
